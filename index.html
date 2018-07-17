@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Grid Garden - A game for learning CSS grid layout</title>
+  <title>Grid Garden - A game for learning JavaScript</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href='https://fonts.googleapis.com/css?family=PT+Sans|Autour+One|Source+Code+Pro' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/style.css">
@@ -16,68 +16,40 @@
         <h1 class="title">Playground</h1>
       </div>
     </div>
-    <p id="instructions">
-      <button id="seed">Execute</button>
-    </p>
+    <div id="instructions">
+      <button>Button</button>
+    </div>
   </section>
   <section id="view">
     <div id="board">
       <div id="overlay">
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
+        <span class="plot" id="0"></span>
+        <span class="plot" id="1"></span>
+        <span class="plot" id="2"></span>
+        <span class="plot" id="3"></span>
+        <span class="plot" id="4"></span>
+        <span class="plot" id="5"></span>
+        <span class="plot" id="6"></span>
+        <span class="plot" id="7"></span>
+        <span class="plot" id="8"></span>
+        <span class="plot" id="9"></span>
+        <span class="plot" id="10"></span>
+        <span class="plot" id="11"></span>
+        <span class="plot" id="12"></span>
+        <span class="plot" id="13"></span>
+        <span class="plot" id="14"></span>
+        <span class="plot" id="15"></span>
+        <span class="plot" id="16"></span>
+        <span class="plot" id="17"></span>
+        <span class="plot" id="18"></span>
+        <span class="plot" id="19"></span>
+        <span class="plot" id="20"></span>
+        <span class="plot" id="21"></span>
+        <span class="plot" id="22"></span>
+        <span class="plot" id="23"></span>
+        <span class="plot" id="24"></span>
       </div>
       <div id="plants">
-        <span class="plot">
-          <img src="images/carrots.svg" width="100%" class="carrot" />
-        </span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot">
-          <img src="images/carrots.svg" width="100%" class="carrot" />
-        </span>
         <span class="plot"></span>
         <span class="plot"></span>
         <span class="plot"></span>
@@ -91,41 +63,25 @@
         <span class="plot"></span>
         <span class="plot"></span>
         <span class="plot"></span>
-        <span class="plot">
-          <img src="images/weeds.svg" width="100%" id="weed" />
-        </span>
+        <span class="plot"></span>
+        <span class="plot"></span>
+        <span class="plot"></span>
+        <span class="plot"></span>
+        <span class="plot"></span>
+        <span class="plot"></span>
+        <span class="plot"></span>
+        <span class="plot"></span>
+        <span class="plot"></span>
+        <span class="plot"></span>
         <span class="plot"></span>
         <span class="plot"></span>
       </div>
       <div id="garden">
-        <span class="plot">
-          <img src="images/water.svg" width="100%" class="water" />
-        </span>
-        <span class="plot">
-
-        </span>
         <span class="plot"></span>
         <span class="plot"></span>
         <span class="plot"></span>
         <span class="plot"></span>
         <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot">
-          <img src="images/water.svg" width="100%" class="water" />
-        </span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot">
-          <img src="images/water.svg" width="100%" class="water" />
-        </span>
         <span class="plot"></span>
         <span class="plot"></span>
         <span class="plot"></span>
@@ -173,65 +129,10 @@
         <span class="plot"></span>
         <span class="plot"></span>
         <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
-        <span class="plot"></span>
       </div>
     </div>
   </section>
-
-    <!-- PASO !: crear la el tag script-->
-  <script> 
-    var max=25;
-    /* PASO 2: eliminar elementos weed */
-    const weed = document.getElementById("weed");
-    weed.remove();
-    /* PASO 3: ByClassName arroja una coleccion por lo que es necesario transformarlo en un array*/
-    const carrots = Array.from(document.getElementsByClassName("carrot"));
-    carrots.forEach(elem => elem.remove());
-    /* PASO 4: Otra forma de llegar a la class water, se transforma el colection a array y se 
-    recorre con un destructor para cambiar atributos de cada uno*/
-    const garden = document.getElementById("garden");
-    const waterFields = Array.from(garden.getElementsByTagName("img"));
-    const[first, second, third] = waterFields;
-    first.setAttribute("width", `${parseInt(first.getAttribute("width")) * 2}%`);
-    second.setAttribute("src", "images/poison.svg");
-    third.classList.toggle("hidden");
-    /* PASO 4: agregar zanahorias */ 
-    const plants = document.getElementById("plants");
-    /* 4.1 - agregar html en una ubicación*/
-    const start = plants.firstElementChild;
-    start.innerHTML = '<img src="images/carrots.svg" width="100%" class="carrot" />'
-    /* 4.2 - crea el objeto con etiqueta "tag" y luego se le setean individualmente los
-       atributos, luego decidimos agregarla en la casilla siguiente*/
-    const newCarrot = document.createElement('img');
-    newCarrot.setAttribute("src", "images/carrots.svg");
-    newCarrot.setAttribute("width", "100%");
-    newCarrot.setAttribute("class", "carrots");
-
-    const next = start.nextElementSibling
-    next.appendChild(newCarrot);
-    /* PASO 5: Boton plantar*/
-    /* Agregar en instrucciones un id="seed" al elemento boton, agregar al comienzo del script
-    una variable max=25*/
-    const seed = document.getElementById("seed");
-    seed.addEventListener("click", (event) => {
-      const pos = Math.floor(Math.random() * max);
-      plants.children[pos].appendChild(newCarrot);
-
-    });
+  <script>
   </script>
 </body>
 
