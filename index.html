@@ -17,7 +17,7 @@
       </div>
     </div>
     <p id="instructions">
-      <button>Execute</button>
+      <button id="seed">Execute</button>
     </p>
   </section>
   <section id="view">
@@ -194,23 +194,24 @@
 
     <!-- PASO !: crear la el tag script-->
   <script> 
-    // PASO 2: eliminar elementos weed 
+    var max=25;
+    /* PASO 2: eliminar elementos weed */
     const weed = document.getElementById("weed");
     weed.remove();
-    // PASO 3: ByClassName arroja una coleccion por lo que es necesario transformarlo en un array
+    /* PASO 3: ByClassName arroja una coleccion por lo que es necesario transformarlo en un array*/
     const carrots = Array.from(document.getElementsByClassName("carrot"));
     carrots.forEach(elem => elem.remove());
-    /* PASO 4: Otra forma de llegar a la class water, se transforma el colection a array y se recorre
-     con un destructor para cambiar atributos de cada uno*/
+    /* PASO 4: Otra forma de llegar a la class water, se transforma el colection a array y se 
+    recorre con un destructor para cambiar atributos de cada uno*/
     const garden = document.getElementById("garden");
     const waterFields = Array.from(garden.getElementsByTagName("img"));
     const[first, second, third] = waterFields;
     first.setAttribute("width", `${parseInt(first.getAttribute("width")) * 2}%`);
     second.setAttribute("src", "images/poison.svg");
     third.classList.toggle("hidden");
-    // PASO 4: agregar zanahorias 
+    /* PASO 4: agregar zanahorias */ 
     const plants = document.getElementById("plants");
-    // 4.1 - agregar html en una ubicación
+    /* 4.1 - agregar html en una ubicación*/
     const start = plants.firstElementChild;
     start.innerHTML = '<img src="images/carrots.svg" width="100%" class="carrot" />'
     /* 4.2 - crea el objeto con etiqueta "tag" y luego se le setean individualmente los
@@ -222,6 +223,15 @@
 
     const next = start.nextElementSibling
     next.appendChild(newCarrot);
+    /* PASO 5: Boton plantar*/
+    /* Agregar en instrucciones un id="seed" al elemento boton, agregar al comienzo del script
+    una variable max=25*/
+    const seed = document.getElementById("seed");
+    seed.addEventListener("click", (event) => {
+      const pos = Math.floor(Math.random() * max);
+      plants.children[pos].appendChild(newCarrot);
+
+    });
   </script>
 </body>
 
