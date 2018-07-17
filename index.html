@@ -191,6 +191,24 @@
       </div>
     </div>
   </section>
+
+    <!-- PASO !: crear la el tag script-->
+  <script> 
+  // PASO 2: eliminar elementos weed 
+    const weed = document.getElementById("weed");
+    weed.remove();
+  // PASO 3: ByClassName arroja una coleccion por lo que es necesario transformarlo en un array
+    const carrots = Array.from(document.getElementsByClassName("carrot"));
+    carrots.forEach(elem => elem.remove());
+  /* PASO 4: Otra forma de llegar a la class water, se transforma el colection a array y se recorre
+     con un destructor para cambiar atributos de cada uno*/
+    const garden = document.getElementById("garden");
+    const waterFields = Array.from(garden.getElementsByTagName("img"));
+    const[first, second, third] = waterFields;
+    first.setAttribute("width", `${parseInt(first.getAttribute("width")) * 2}%`);
+    second.setAttribute("src", "images/poison.svg");
+    third.classList.toggle("hidden");
+  </script>
 </body>
 
 </html>
