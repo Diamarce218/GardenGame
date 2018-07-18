@@ -17,7 +17,9 @@
       </div>
     </div>
     <div id="instructions">
-      <button>Button</button>
+      <p>Controls</p>
+      <button id="water" class="control">Water</button>
+      <button id="poison" class="control">Poison</button>
     </div>
   </section>
   <section id="view">
@@ -133,6 +135,48 @@
     </div>
   </section>
   <script>
+    // obtiene todos los elementos y los almacena en variables
+    const overlay = document.getElementById('overlay');
+    const plants = document.getElementById('plants');
+    const garden = document.getElementById('garden');
+    const water = document.getElementById('water');
+    const poison = document.getElementById('poison');
+    let selection;
+
+    // función que crea el elemento que se va a plantar
+    function createGardenElement(type) {
+      const element = document.createElement('img');
+      element.setAttribute('src', `images/${type}.svg`);
+      element.setAttribute('width', '100%');
+      element.setAttribute('class', type);
+      return element;
+    }
+
+    // EVENTO CLICK
+    overlay.addEventListener('click', (event) => {
+      if (selection) {
+        // obtiene el plot en el que se hace click
+        let position = parseInt(event.target.getAttribute('id'));
+        //obtiene el valor selection de los botones water y poison llama funcion crear elemento
+        let element = createGardenElement(selection); 
+        //limpia el plot antes de agregar el elemento a sembrar, para no sobreescribir 
+        garden.children[position].innerHTML = '';
+        //agrega el elemento creado con la funcion
+        garden.children[position].appendChild(element);
+      }
+    });
+    water.addEventListener('click', (event) => {
+      selection = 'water';
+      // seleccionar y deseleccionar botones
+      water.classList.add('selected');
+      poison.classList.remove('selected');
+    });
+    poison.addEventListener('click', (event) => {
+      selection = 'poison';
+      // seleccionar y deseleccionar botones
+      poison.classList.add('selected');
+      water.classList.remove('selected');
+    });
   </script>
 </body>
 
