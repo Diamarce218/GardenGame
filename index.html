@@ -17,6 +17,9 @@
       </div>
     </div>
     <div id="instructions">
+      <p>Game</p>
+      <button id="play" class="control">Play</button>
+      <button id="stop" class="control">Stop</button>
       <p>Controls</p>
       <button id="water" class="control">Water</button>
       <button id="poison" class="control">Poison</button>
@@ -141,7 +144,25 @@
     const garden = document.getElementById('garden');
     const water = document.getElementById('water');
     const poison = document.getElementById('poison');
+    const play = document.getElementById('play');
+    const stop = document.getElementById('stop');
+    // Poison o Weed
     let selection;
+    // Intervalo de tiempo para cada elemento
+    let intervals = {
+      seedWeed: null,
+      killWeed: null,
+      growCarrots: null
+    };
+    // variable que indica que no ha comenzado el juego
+    let started = false;
+    // numero maximo de plots
+    const max = 25;
+    // objeto que guarda la posicion de dos vectores, con el elemento que le ocupa
+    const state = {
+      plants: [],
+      garden: []
+    };
 
     // función que crea el elemento que se va a plantar
     function createGardenElement(type) {
@@ -152,19 +173,71 @@
       return element;
     }
 
+    // FUNCION PARA PLANTAR ALEATORIAMENTE WEEDS
+    function seedWeed() {
+      // genera una posicion random para elegir uno de los 25 plots
+      let position = Math.floor(Math.random() * max);
+      if (!state.plants[position] && state.garden[position] !== 'water') {
+        let element = createGardenElement('weed');
+        plants.children[position].innerHTML = '';
+        plants.children[position].appendChild(element);
+        state.plants[position] = 'weed';
+      }
+    }
+
+    // FUNCION PARA MATAR WEEDS
+    function killWeed() {
+      /* Se recorre el vector plantas preguntando si en una posicion hay veneno, luego
+      si en esa misma posicion en vector garden hay veneno para eliminar ambos elementos*/
+      state.plants.forEach((plant, index) => {
+        if (plant === 'weed' && state.garden[index] === 'poison') {
+          state.plants[index] = undefined;
+          state.garden[index] = undefined;
+          plants.children[index].innerHTML = '';
+          garden.children[index].innerHTML = '';
+        }
+      });
+    }
+
+    // FUNCION PARA CREAR CARROTS
+    function growCarrots() {
+      /* Se recorre el vector garden preguntando si en una posicion hay agua, si es asi crea en
+      esa misma posicion un carrots y elimina elemento agua*/
+      state.garden.forEach((resource, index) => {
+        if (resource === 'water') {
+          state.garden[index] = undefined;
+          garden.children[index].innerHTML = '';
+          let element = createGardenElement('carrot');
+          plants.children[index].innerHTML = '';
+          plants.children[index].appendChild(element);
+          state.plants[index] = 'carrot';
+        }
+      });
+    }
+
     // EVENTO CLICK
     overlay.addEventListener('click', (event) => {
-      if (selection) {
+      if (started && selection) {
         // obtiene el plot en el que se hace click
         let position = parseInt(event.target.getAttribute('id'));
-        //obtiene el valor selection de los botones water y poison llama funcion crear elemento
-        let element = createGardenElement(selection); 
-        //limpia el plot antes de agregar el elemento a sembrar, para no sobreescribir 
-        garden.children[position].innerHTML = '';
-        //agrega el elemento creado con la funcion
-        garden.children[position].appendChild(element);
+        if (!state.garden[position] &&
+          (
+            (selection === 'poison' && state.plants[position] === 'weed') ||
+            (selection === 'water' && state.plants[position])
+          )
+        ) {
+          //obtiene el valor selection de los botones water y poison llama funcion crear elemento
+          let element = createGardenElement(selection);
+          //limpia el plot antes de agregar el elemento a sembrar, para no sobreescribir
+          garden.children[position].innerHTML = '';
+          //agrega el elemento creado con la funcion
+          garden.children[position].appendChild(element);
+          //
+          state.garden[position] = selection;
+        }
       }
     });
+
     water.addEventListener('click', (event) => {
       selection = 'water';
       // seleccionar y deseleccionar botones
@@ -176,6 +249,24 @@
       // seleccionar y deseleccionar botones
       poison.classList.add('selected');
       water.classList.remove('selected');
+    });
+
+    // EVENTO INTERVALOS DE TIEMPO PARA CADA UNO DE LOS ELEMENTOS JUEGO EN MODO PLAY
+    play.addEventListener('click', (event) => {
+      intervals.growCarrots = setInterval(growCarrots, 4000);
+      intervals.seedWeed = setInterval(seedWeed, 1500);
+      intervals.killWeed = setInterval(killWeed, 500);
+      play.classList.add('selected');
+      started = true;
+    });
+
+    //  EVENTO INTERVALOS DE TIEMPO PARA CADA UNO DE LOS ELEMENTOS JUEGO EN MODO STOP
+    stop.addEventListener('click', (event) => {
+      clearInterval(intervals.growCarrots);
+      clearInterval(intervals.seedWeed);
+      clearInterval(intervals.killWeed);
+      play.classList.remove('selected');
+      started = false;
     });
   </script>
 </body>
